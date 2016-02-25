@@ -295,8 +295,10 @@ if(WIN32)
   check_library_exists_concat("winmm"  getch        HAVE_LIBWINMM)
 endif()
 
-option(CMAKE_USE_OPENSSL "Use OpenSSL code. Experimental" ON)
-mark_as_advanced(CMAKE_USE_OPENSSL)
+if(NOT CURL_WINDOWS_SSPI)
+  option(CMAKE_USE_OPENSSL "Use OpenSSL code. Experimental" ON)
+  mark_as_advanced(CMAKE_USE_OPENSSL)
+endif()
 
 set(USE_OPENSSL OFF)
 set(HAVE_LIBCRYPTO OFF)
